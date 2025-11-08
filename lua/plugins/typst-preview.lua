@@ -7,7 +7,17 @@ return {
 
     -- Set the root to where .git is located so that preview works in subfolders.
     get_root = function(path_of_main_file)
-      return vim.fs.dirname(vim.fs.find({ ".git" }, { path = path_of_main_file, upward = true })[1])
+      local git_root = vim.fs.dirname(vim.fs.find({ ".git" }, { path = path_of_main_file, upward = true })[1])
+      if git_root then
+        return git_root
+      end
+
+      local root = os.getenv("TYPST_ROOT")
+      if root then
+        return root
+      end
+
+      return vim.fn.fnamemodify(path_of_main_file, ":p:h")
     end,
   },
 }
