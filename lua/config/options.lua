@@ -4,3 +4,7 @@
 
 -- Allow Copilot to suggest when a new line is added.
 vim.g.ai_cmp = false
+
+-- Configure 4-space indentation
+vim.o.tabstop = 4 -- Number of spaces that a <Tab> counts for
+vim.o.shiftwidth = 4 -- Number of spaces to use for each step of (auto)indent
